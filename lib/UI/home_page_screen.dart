@@ -12,18 +12,22 @@ class _MyHomePageState extends State<MyHomePage> {
     Center(
         child: Pages(
       text: "Page One",
+      color: Colors.teal,
     )),
     Center(
         child: Pages(
       text: "Page Two",
+      color: Colors.red.shade100,
     )),
     Center(
         child: Pages(
       text: "Page Three",
+      color: Colors.grey,
     )),
     Center(
         child: Pages(
       text: "Page Four",
+      color: Colors.yellow.shade100,
     ))
   ];
   int _curr = 0;
@@ -38,8 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: PageView(
+        allowImplicitScrolling: true,
         children: _list,
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.vertical,
         // reverse: true,
         // physics: BouncingScrollPhysics(),
         controller: controller,
@@ -55,21 +60,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class Pages extends StatelessWidget {
   final text;
-  Pages({this.text});
+  final color;
+  Pages({this.text, this.color});
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w400),
-            ),
-          ]),
+    return Container(
+      color: color,
+      child: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w400),
+              ),
+            ]),
+      ),
     );
   }
 }
